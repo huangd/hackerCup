@@ -4,7 +4,6 @@ import com.google.common.io.Files;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.*;
@@ -21,45 +20,45 @@ public class BeautifulStrings {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = Files.newReader(new File("src/main/resources/bigInput.txt"), Charset.forName("UTF-8"));
         int lineNumber = Integer.parseInt(bufferedReader.readLine());
-        for(int i=1; i<=lineNumber; ++i){
+        for (int i = 1; i <= lineNumber; ++i) {
             BeautifulStrings beautifulStrings = new BeautifulStrings();
             beautifulStrings.populateMap(bufferedReader.readLine());
-            System.out.println("Case #"+i+": "+beautifulStrings.getMax());
+            System.out.println("Case #" + i + ": " + beautifulStrings.getMax());
         }
     }
 
-    private void populateMap(String input){
+    private void populateMap(String input) {
         characterMap = new HashMap<Character, Integer>();
         input = input.toLowerCase();
-        for(int i=0; i<input.length(); i++ ){
+        for (int i = 0; i < input.length(); i++) {
             char aChar = input.charAt(i);
-            if(aChar>='a' && aChar<='z'){
+            if (aChar >= 'a' && aChar <= 'z') {
                 updateMap(aChar);
             }
         }
     }
 
-    private void updateMap(char aChar){
+    private void updateMap(char aChar) {
         Integer integer = characterMap.get(aChar);
-        if(integer == null){
+        if (integer == null) {
             integer = 1;
-        }else{
+        } else {
             integer++;
         }
         characterMap.put(aChar, integer);
     }
 
-    private int getMax(){
+    private int getMax() {
         Set<Character> keys = characterMap.keySet();
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
-        for(Character character : keys){
+        for (Character character : keys) {
             arrayList.add(characterMap.get(character));
         }
         Collections.sort(arrayList);
 
         int max = 0;
-        for(int i=arrayList.size()-1, j=26; i>=0; i--, j--){
-            max += arrayList.get(i)*j;
+        for (int i = arrayList.size() - 1, j = 26; i >= 0; i--, j--) {
+            max += arrayList.get(i) * j;
         }
         return max;
     }
