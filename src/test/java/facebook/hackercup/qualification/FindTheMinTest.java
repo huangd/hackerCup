@@ -17,13 +17,16 @@ public class FindTheMinTest {
         m[0] = 0;
         m[1] = 2;
         m[2] = 3;
+
+        findTheMin.init(m, 3);
         int last = findTheMin.getN(m, 0, 3);
         assertEquals(1, last);
 
         m = new int[7];
-        m[0] = 3;
+        m[0] = 1000000000;
         m[1] = 4;
         m[2] = 5;
+        findTheMin.init(m, 3);
         last = findTheMin.getN(m, 0, 3);
         assertEquals(0, last);
     }
