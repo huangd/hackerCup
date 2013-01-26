@@ -25,6 +25,7 @@ public class BeautifulStrings {
             beautifulStrings.populateMap(bufferedReader.readLine());
             System.out.println("Case #" + i + ": " + beautifulStrings.getMax());
         }
+        bufferedReader.close();
     }
 
     private void populateMap(String input) {
