@@ -18,7 +18,7 @@ public class BeautifulStrings {
     private Map<Character, Integer> characterMap;
 
     public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = Files.newReader(new File("src/main/resources/bigInput.txt"), Charset.forName("UTF-8"));
+        BufferedReader bufferedReader = Files.newReader(new File("src/main/resources/BeautifulStrings.big"), Charset.forName("UTF-8"));
         int lineNumber = Integer.parseInt(bufferedReader.readLine());
         for (int i = 1; i <= lineNumber; ++i) {
             BeautifulStrings beautifulStrings = new BeautifulStrings();
