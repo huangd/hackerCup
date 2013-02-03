@@ -50,13 +50,24 @@ public class Security {
                 }
             }
         }
+        Collections.sort(k1Sections);
+        ArrayList<String> tmp = new ArrayList<String>();
+        for (int i = k1Sections.size() - 1; i >= 0; --i) {
+            tmp.add(k1Sections.get(i));
+        }
+        k1Sections = tmp;
     }
 
     private String rebuildResult() {
         ArrayList<String> sections = getKSection(kIndexList.size(), k);
-        for (int i = 0; i < sections.size(); ++i) {
-            oK1Sections.set(kIndexList.get(i), sections.get(i));
+        for (int i = 0; i < kIndexList.size(); ++i) {
+            String oK1Section = oK1Sections.get(kIndexList.get(i));
+            int k1Index = k1Sections.indexOf(oK1Section);
+            oK1Sections.set(kIndexList.get(i), sections.get(k1Index));
+            k1Sections.remove(k1Index);
+            sections.remove(k1Index);
         }
+
         StringBuilder stringBuilder = new StringBuilder();
         for (String section : oK1Sections) {
             stringBuilder.append(section);
@@ -69,7 +80,7 @@ public class Security {
         long start = System.currentTimeMillis();
         System.out.println(new Date(start));
         BufferedReader bufferedReader
-                = Files.newReader(new File("src/main/resources/Security.small"), Charset.forName("UTF-8"));
+                = Files.newReader(new File("src/main/resources/Security.big"), Charset.forName("UTF-8"));
         int lineNumber = Integer.parseInt(bufferedReader.readLine());
         for (int i = 1; i <= lineNumber; ++i) {
             int m = Integer.parseInt(bufferedReader.readLine());
