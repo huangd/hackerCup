@@ -49,7 +49,6 @@ public class CardGame {
     }
 
     public long getSum(long N, long K, long[] a) {
-
         init(N - 1, K - 1);
         Arrays.sort(a);
         long sum = 0;
@@ -78,7 +77,6 @@ public class CardGame {
         for (int i = 1; i <= K; ++i) {
             kFactorial = kFactorial.multiply(new BigInteger(i + ""));
         }
-
         nKMap = new HashMap<Long, BigInteger>();
         for (long n = K; n <= N; ++n) {
             if (n == K) {
